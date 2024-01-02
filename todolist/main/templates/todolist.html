@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>{{todolist}}</h1>
+    <ul>
+        {% for item in todolist.listitem_set.all %}
+        <li>
+            {{item}}<a href="{% url 'main:delete_item' item.id%}">-</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'main:add_item' todolist.pk %}">+</a>
+</body>
+</html>

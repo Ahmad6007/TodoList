@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <h1>{{todolist}}</h1>
+    <ul>
+        {% for item in todolist.listitem_set.all %}
+        <li>
+            {{item}}<a href="{% url 'main:delete_item' item.id%}">-</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'main:add_item' todolist.pk %}">+</a>
+
+    <form action="{% url 'main:add_item' todolist.pk %}" method="post">
+        {% csrf_token %}
+        <label for="item_text">Enter your item text below</label>
+        <input type="text" name="item_text">
+        <input type="submit" value="submit">
+    </form>
+</body>
+</html>
